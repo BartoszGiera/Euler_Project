@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography;
-
-#region Main
+﻿#region Main
 class ProgramRunner
 {
     static void Main(string[] args)
@@ -26,18 +24,35 @@ class ProgramRunner
             x();
     }
 }
-
 #endregion
+
 #region #1
 class P1
 {
     public static void Run()
     {
-        Console.WriteLine("1");
+        int result = 0, temp = 0;
+
+        while (temp < 1000)
+        {
+            temp += 3;
+            if (temp < 1000)
+                result += temp;
+        }
+
+        temp = 0;
+        while (temp < 1000)
+        {
+            temp += 5;
+            if (temp < 1000 && temp % 3 != 0)
+                result += temp;
+        }
+
+        Console.WriteLine(result);
     }
 }
-
 #endregion
+
 #region #2
 class P2
 {
@@ -46,5 +61,4 @@ class P2
         Console.Write("2");
     }
 }
-
 #endregion
