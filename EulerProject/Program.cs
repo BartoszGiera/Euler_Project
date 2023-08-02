@@ -1,4 +1,9 @@
-﻿#region Main
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading;
+
+#region Main
 class ProgramRunner
 {
     public static void Main(string[] args)
@@ -21,7 +26,7 @@ class ProgramRunner
         Int32.TryParse(Console.ReadLine(), out problemNumber);
 
         Console.WriteLine($"\n\nStarting solution to problem no.{problemNumber}...\n");
-        Thread.Sleep(2 * 1000);
+        Thread.Sleep(500);
 
         if (problemsMap.TryGetValue(problemNumber, out var x))
             x();
@@ -53,7 +58,7 @@ class P1
 
         Console.WriteLine("Result for sum under 1000: " + result);
 
-        Console.WriteLine("\n\nType maxima");
+        Console.WriteLine("\n\nType in new maxima");
         Int32.TryParse(Console.ReadLine(), out temp);
 
         result = 3 * (int)(temp / 3) * (1 + (int)(temp / 3)) / 2 + 5 * (int)(temp / 5) * (1 + (int)(temp / 5)) / 2 - 15 * (int)(temp / 15) * (1 + (int)(temp / 15)) / 2;
@@ -107,7 +112,9 @@ class P3
             Console.WriteLine("\nInput number for prime factorization:");
             Int64.TryParse(Console.ReadLine(), out input);
         }
-        
+
+        long timer = Stopwatch.GetTimestamp();
+
         while (input > result)
         {
             if (input % temp == 0)
@@ -119,6 +126,7 @@ class P3
         }
 
         Console.WriteLine($"\nHighest prime factor is equal to {result}");
+        Console.WriteLine($"\nCalculated in {Stopwatch.GetElapsedTime(timer).ToString(@"m\:ss\.fff")}");
     }
 }
 #endregion
