@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading;
 
 #region Main
@@ -17,6 +18,11 @@ class ProgramRunner
             { 3, () => P3.Run() },
             { 4, () => P4.Run() },
             { 5, () => P5.Run() },
+            { 6, () => P6.Run() },
+            { 7, () => P7.Run() },
+            { 8, () => P8.Run() },
+            { 9, () => P9.Run() },
+            { 10, () => P10.Run() },
         };
         #endregion
 
@@ -33,6 +39,8 @@ class ProgramRunner
     }
 }
 #endregion
+
+#region 1 - 10
 
 #region #1
 class P1
@@ -126,7 +134,7 @@ class P3
         }
 
         Console.WriteLine($"\nHighest prime factor is equal to {result}");
-        Console.WriteLine($"\nCalculated in {Stopwatch.GetElapsedTime(timer).ToString(@"m\:ss\.fff")}");
+        Console.WriteLine($"\nCalculated in {Stopwatch.GetElapsedTime(timer).ToString(@"mm\:ss\.fff")}");
     }
 }
 #endregion
@@ -136,7 +144,50 @@ class P4
 {
     public static void Run()
     {
-        Console.WriteLine("Empty");
+        int digits = 0, max = 1, min = 0;
+        long result = 0;
+
+        Console.Write("Largest palindrome made from the product of two X-digit numbers, where X = ");
+        Int32.TryParse(Console.ReadLine(), out digits);
+
+        long timer = Stopwatch.GetTimestamp();
+
+        max = (int)Math.Pow(10, digits);
+        min = max / 10;
+
+        for (int i = max - 1; i >= min; i--)
+        {
+            for (int j = i; j >= min; j--)
+            {
+                if (IsPalindrome(i * j) && i * j > result)
+                {
+                    result = i * j;
+                }
+            }
+        }
+
+        if (result != 0)
+            Console.WriteLine($"\nLargest found palindrome = {result}");
+        else
+            Console.WriteLine("\nDid not find any palindromes");
+
+        Console.WriteLine($"Calculated in {Stopwatch.GetElapsedTime(timer).ToString(@"mm\:ss\.fff")}");
+    }
+
+    private static bool IsPalindrome(long num)
+    {
+        if (num < 0)
+            return false;
+
+        string palindrome = num.ToString();
+        int n = palindrome.Length;
+
+        for (int i = 0; i < n / 2; i++)
+        {
+            if (palindrome.ElementAt(i) != palindrome.ElementAt(n - 1 - i))
+                return false;
+        }
+        return true;
     }
 }
 #endregion
@@ -149,4 +200,56 @@ class P5
         Console.WriteLine("Empty");
     }
 }
+#endregion
+
+#region #6
+class P6
+{
+    public static void Run()
+    {
+        Console.WriteLine("Empty");
+    }
+}
+#endregion
+
+#region #7
+class P7
+{
+    public static void Run()
+    {
+        Console.WriteLine("Empty");
+    }
+}
+#endregion
+
+#region #8
+class P8
+{
+    public static void Run()
+    {
+        Console.WriteLine("Empty");
+    }
+}
+#endregion
+
+#region #9
+class P9
+{
+    public static void Run()
+    {
+        Console.WriteLine("Empty");
+    }
+}
+#endregion
+
+#region #10
+class P10
+{
+    public static void Run()
+    {
+        Console.WriteLine("Empty");
+    }
+}
+#endregion
+
 #endregion
