@@ -195,9 +195,58 @@ class P4
 #region #5
 class P5
 {
+    private static long _result = 0;
     public static void Run()
     {
-        Console.WriteLine("Empty");
+        int input = 0;
+
+        Console.Write("Least common multiple of numbers 1 to ");
+        Int32.TryParse(Console.ReadLine(), out input);
+        long timer = Stopwatch.GetTimestamp();
+
+        LCM(input - 1, input);
+        
+        Console.WriteLine($"\n\nLCM(1, 2, 3... ,{input}) = {_result}");
+        Console.WriteLine($"Calculated in {Stopwatch.GetElapsedTime(timer).ToString(@"mm\:ss\.fff")}");
+    }
+
+    private static void LCM(int a, long b)
+    {
+        long result = a * b / GCD(a, b);
+
+        while (a != 1)
+        {
+            LCM(a - 1, result);
+            return;
+        }
+
+        _result = result;
+    }
+
+    private static long GCD(long a, long b)
+    {
+        long temp = 0, result = 0;
+
+        if (b > a)
+        {
+            temp = a;
+            a = b;
+            b = temp;
+        }
+
+        if (a % b == 0)
+            return b;
+
+        for (long i = b - 1; i >= 1; i--)
+        {
+            if (a % i == 0 && b % i == 0)
+            {
+                result = i;
+                break;
+            }
+        }
+
+        return result;
     }
 }
 #endregion
