@@ -1,7 +1,7 @@
 ﻿#region Main
 class ProgramRunner
 {
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
         #region Problems mapping
 
@@ -96,7 +96,29 @@ class P3
 {
     public static void Run()
     {
-        Console.WriteLine("Empty");
+        long result = 1, input = 0, temp = 2;
+
+        Console.WriteLine("Use base problem number? Y/N");
+
+        if (Console.ReadLine() == "Y")
+            input = 600851475143;
+        else
+        {
+            Console.WriteLine("\nInput number for prime factorization:");
+            Int64.TryParse(Console.ReadLine(), out input);
+        }
+        
+        while (input > result)
+        {
+            if (input % temp == 0)
+            {
+                input = input / temp;
+                result = temp;
+            }
+            temp++;
+        }
+
+        Console.WriteLine($"\nHighest prime factor is equal to {result}");
     }
 }
 #endregion
