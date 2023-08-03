@@ -256,7 +256,21 @@ class P6
 {
     public static void Run()
     {
-        Console.WriteLine("Empty");
+        long sumOfSquares = 0, squareOfSum = 0;
+        int input = 0;
+
+        Console.Write("Calculate the difference between sum of squares and square of sum od number form 1 to ");
+        Int32.TryParse(Console.ReadLine(), out input);
+
+        for (int i = 1; i <= input; i++)
+        {
+            sumOfSquares += i * i;
+            squareOfSum += i;
+        }
+
+        squareOfSum *= squareOfSum;
+
+        Console.WriteLine($"{squareOfSum} - {sumOfSquares} = {squareOfSum - sumOfSquares}");
     }
 }
 #endregion
