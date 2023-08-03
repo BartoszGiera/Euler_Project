@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading;
 
 #region Main
@@ -280,7 +281,38 @@ class P7
 {
     public static void Run()
     {
-        Console.WriteLine("Empty");
+        int primeCount = 4, n = 9, input = 0;
+        bool isPrime = false;
+
+        Console.WriteLine("Which prime number to calculate?");
+        Int32.TryParse(Console.ReadLine(), out input);
+
+        long timer = Stopwatch.GetTimestamp();
+
+        while (primeCount < input)
+        {
+            n++;
+            int max = (int)Math.Sqrt(n);
+            isPrime = true;
+
+            for (int i = 2; i <= max; i++)
+            {
+                if (n % i == 0)
+                {
+                    isPrime = false;
+                    break;
+                }
+            }
+
+            if (isPrime)
+            {
+                primeCount++;
+                isPrime = false;
+            }
+        }
+
+        Console.WriteLine($"Prime({input}) = {n}");
+        Console.WriteLine($"Calculated in {Stopwatch.GetElapsedTime(timer).ToString(@"mm\:ss\.fff")}");
     }
 }
 #endregion
