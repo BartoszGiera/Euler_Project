@@ -356,7 +356,54 @@ class P9
 {
     public static void Run()
     {
-        Console.WriteLine("Empty");
+        int n = 0;
+
+        Console.Write("Input what a + b + c equals to: ");
+        Int32.TryParse(Console.ReadLine(), out n );
+
+        long timer = Stopwatch.GetTimestamp();
+
+        Console.WriteLine(BruteForce(n));
+
+        Console.WriteLine($"Calculated (with brute force O(n^3)) in {Stopwatch.GetElapsedTime(timer).ToString(@"mm\:ss\.fff")}");
+
+
+
+        timer = Stopwatch.GetTimestamp();
+
+        Console.WriteLine(OptimizedBrute(n));
+
+        Console.WriteLine($"Calculated (with optimized brute force ~O(n^2)) in {Stopwatch.GetElapsedTime(timer).ToString(@"mm\:ss\.fff")}");
+    }
+
+    private static long BruteForce(int n)
+    {
+        for (long a = 1; a < n / 2; a++)
+        {
+            for (long b = 1; b < n / 2; b++)
+            {
+                for (long c = 1; c < n / 2; c++)
+                {
+                    if (a + b + c == n && a * a + b * b == c * c)
+                        return a * b * c;
+                }
+            }
+        }
+
+        return 0;
+    }
+
+    private static long OptimizedBrute(int n)
+    {
+        for (long a = 1; a < n / 2; a++)
+        {
+            for (long b = 1; b < n / 2; b++)
+            {
+                if (a * a + b * b == (n - a - b) * (n - a - b))
+                    return a * b * (n - a - b);
+            }
+        }
+        return 0;
     }
 }
 #endregion
