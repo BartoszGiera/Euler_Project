@@ -24,6 +24,26 @@ class ProgramRunner
             { 8, () => P8.Run() },
             { 9, () => P9.Run() },
             { 10, () => P10.Run() },
+            { 11, () => P11.Run() },
+            { 12, () => P12.Run() },
+            { 13, () => P13.Run() },
+            { 14, () => P14.Run() },
+            { 15, () => P15.Run() },
+            { 16, () => P16.Run() },
+            { 17, () => P17.Run() },
+            { 18, () => P18.Run() },
+            { 19, () => P19.Run() },
+            { 20, () => P20.Run() },
+            { 21, () => P21.Run() },
+            { 22, () => P22.Run() },
+            { 23, () => P23.Run() },
+            { 24, () => P24.Run() },
+            { 25, () => P25.Run() },
+            { 26, () => P26.Run() },
+            { 27, () => P27.Run() },
+            { 28, () => P28.Run() },
+            { 29, () => P29.Run() },
+            { 30, () => P30.Run() },
         };
         #endregion
 
@@ -413,7 +433,253 @@ class P10
 {
     public static void Run()
     {
-        Console.WriteLine("Empty");
+        long result = 2 + 3 + 5 + 7;
+        int input = 0;
+        bool isPrime = false;
+
+        Console.Write("Sum all primes below: ");
+        Int32.TryParse(Console.ReadLine(), out input);
+
+        long timer = Stopwatch.GetTimestamp();
+
+        for (int i = 9; i < input; i++)
+        {
+            int max = (int)Math.Sqrt(i);
+            isPrime = true;
+
+            if (i % 2 == 0)
+                isPrime = false;
+            else
+            {
+                for (int j = 3; j <= max; j += 2)
+                {
+                    if (i % j == 0)
+                    {
+                        isPrime = false;
+                        break;
+                    }
+                }
+            }
+
+            if (isPrime)
+            {
+                result += i;
+                isPrime = false;
+            }
+        }
+
+        Console.WriteLine($"Sum of all primes below {input} = {result}");
+        Console.WriteLine($"Calculated in {Stopwatch.GetElapsedTime(timer).ToString(@"mm\:ss\.fff")}");
+    }
+}
+#endregion
+
+#endregion
+
+#region 11 - 20
+
+#region #11
+class P11
+{
+    public static void Run()
+    {
+
+    }
+}
+#endregion
+
+#region #12
+class P12
+{
+    public static void Run()
+    {
+
+    }
+}
+#endregion
+
+#region #13
+class P13
+{
+    public static void Run()
+    {
+
+    }
+}
+#endregion
+
+#region #14
+class P14
+{
+    public static void Run()
+    {
+
+    }
+}
+#endregion
+
+#region #15
+class P15
+{
+    private static long _result = 0;
+    public static void Run()
+    {
+
+    }
+}
+#endregion
+
+#region #16
+class P16
+{
+    public static void Run()
+    {
+
+    }
+}
+#endregion
+
+#region #17
+class P17
+{
+    public static void Run()
+    {
+
+    }
+}
+#endregion
+
+#region #18
+class P18
+{
+    public static void Run()
+    {
+
+    }
+}
+#endregion
+
+#region #19
+class P19
+{
+    public static void Run()
+    {
+        
+    }
+}
+#endregion
+
+#region #20
+class P20
+{
+    public static void Run()
+    {
+
+    }
+}
+#endregion
+
+#endregion
+
+#region 21 - 30
+
+#region #21
+class P21
+{
+    public static void Run()
+    {
+
+    }
+}
+#endregion
+
+#region #22
+class P22
+{
+    public static void Run()
+    {
+
+    }
+}
+#endregion
+
+#region #23
+class P23
+{
+    public static void Run()
+    {
+
+    }
+}
+#endregion
+
+#region #24
+class P24
+{
+    public static void Run()
+    {
+
+    }
+}
+#endregion
+
+#region #25
+class P25
+{
+    private static long _result = 0;
+    public static void Run()
+    {
+
+    }
+}
+#endregion
+
+#region #26
+class P26
+{
+    public static void Run()
+    {
+
+    }
+}
+#endregion
+
+#region #27
+class P27
+{
+    public static void Run()
+    {
+
+    }
+}
+#endregion
+
+#region #28
+class P28
+{
+    public static void Run()
+    {
+
+    }
+}
+#endregion
+
+#region #29
+class P29
+{
+    public static void Run()
+    {
+
+    }
+}
+#endregion
+
+#region #30
+class P30
+{
+    public static void Run()
+    {
+
     }
 }
 #endregion
