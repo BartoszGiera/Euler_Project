@@ -546,7 +546,55 @@ class P12
 {
     public static void Run()
     {
+        long num = 0;
+        bool useBrute = false;
 
+        Console.WriteLine("How many divisors for first triangle number to have?");
+        Int32.TryParse(Console.ReadLine(), out int input);
+        Console.WriteLine("Use BruteForce solution? Y/N");
+
+        if (Console.ReadLine() == "Y")
+            useBrute = true;
+
+        long timer = Stopwatch.GetTimestamp();
+
+        if (useBrute)
+            num = BruteForce(input);
+        else
+            num = Optimized(input);
+
+        Console.WriteLine($"First triangle number to have {input} divisors = {num}");
+        Console.WriteLine($"Calculated in {Stopwatch.GetElapsedTime(timer).ToString(@"mm\:ss\.fff")}");
+    }
+
+    private static long BruteForce(int input)
+    {
+        long num = 0, temp = 1;
+        int divisorCount = 2;
+
+        while (true)
+        {
+            num += temp;
+
+            for (int i = 2; i <= num / 2; i++)
+            {
+                if (num % i == 0)
+                    divisorCount++;
+            }
+
+            if (divisorCount >= input)
+                return num;
+            else
+            {
+                temp++;
+                divisorCount = 2;
+            }
+        }
+    }
+
+    private static long Optimized(int input)
+    {
+        return 0;
     }
 }
 #endregion
