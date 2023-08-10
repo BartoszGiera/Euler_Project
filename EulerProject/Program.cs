@@ -544,6 +544,9 @@ class P11
 #region #12
 class P12
 {
+    private static List<int> primes = new List<int>();
+    public static List<int> PrimesList { get => primes; set => primes = value; }
+
     public static void Run()
     {
         long num = 0;
@@ -594,7 +597,85 @@ class P12
 
     private static long Optimized(int input)
     {
-        return 0;
+        long num = 0, temp = 1;
+
+        PrimesList = Primes();
+
+        while (true)
+        {
+            num += temp;
+
+            if (PrimeFactorization(num) >= input)
+                return num;
+            else
+                temp++;
+        }
+    }
+
+    /// <summary>
+    /// Prime numbers generator
+    /// </summary>
+    /// <returns></returns>
+    private static List<int> Primes()
+    {
+        List<int> result = new List<int>() { 2, 3, 5, 7 };
+
+        int n = 10;
+        bool isPrime = false;
+
+        while (result.Count < 10000) //First 10000 primes should be sufficient
+        {
+            n++;
+            int max = (int)Math.Sqrt(n);
+            isPrime = true;
+
+            for (int i = 2; i <= max; i++)
+            {
+                if (n % i == 0)
+                {
+                    isPrime = false;
+                    break;
+                }
+            }
+
+            if (isPrime)
+            {
+                result.Add(n);
+                isPrime = false;
+            }
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// Runs prime factorization for given number
+    /// </summary>
+    /// <param name="num"></param>
+    /// <returns>Number of divisors from equation d(n) = (a+1)(b+1)(c+1)...</returns>
+    private static int PrimeFactorization(long num)
+    {
+        int divisorCount = 1, temp = 1;
+
+        for (int i = 0; i < PrimesList.Count; i++) 
+        {
+            if (num < PrimesList[i])
+                break;
+
+            if (num % PrimesList[i] == 0)
+            {
+                while (num % PrimesList[i] == 0)
+                {
+                    num /= PrimesList[i];
+                    temp++;
+                }
+
+                divisorCount *= temp;
+                temp = 1;
+            }
+        }
+
+        return divisorCount;
     }
 }
 #endregion
