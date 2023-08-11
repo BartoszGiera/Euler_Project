@@ -700,7 +700,38 @@ class P14
 {
     public static void Run()
     {
+        int longestChainStarter = 0, steps = 1, maxSteps = 0;
 
+        Console.Write("Calculate longest chain starting with number under: ");
+        Int32.TryParse(Console.ReadLine(), out int input);
+
+        long timer = Stopwatch.GetTimestamp();
+
+        for (int i = 1; i < input; i++)
+        {
+            long n = i;
+
+            while (n > 1)
+            {
+                if (n % 2 == 0)
+                    n /= 2;
+                else
+                    n = 3 * n + 1;
+
+                steps++;
+            }
+
+            if (steps > maxSteps)
+            {
+                maxSteps = steps;
+                longestChainStarter = i;
+            }
+
+            steps = 1;
+        }
+
+        Console.WriteLine($"\n\nLongest chain was made of {maxSteps} steps, starting number = {longestChainStarter}");
+        Console.WriteLine($"Calculated in {Stopwatch.GetElapsedTime(timer).ToString(@"mm\:ss\.fff")}");
     }
 }
 #endregion
@@ -708,7 +739,6 @@ class P14
 #region #15
 class P15
 {
-    private static long _result = 0;
     public static void Run()
     {
 
@@ -813,7 +843,6 @@ class P24
 #region #25
 class P25
 {
-    private static long _result = 0;
     public static void Run()
     {
 
