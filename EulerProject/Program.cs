@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Threading;
 
@@ -741,7 +742,22 @@ class P15
 {
     public static void Run()
     {
+        Console.Write("Count how many routes from top-left to bottom-right corner in square AxA, where A = ");
+        Int32.TryParse(Console.ReadLine(), out int input);
 
+        BigInteger factorial = 1, factorial2 = 1, result;
+
+        for (int i = 1; i <= input; i++)
+            factorial *= i;
+
+        factorial2 = factorial;
+
+        for (int i = input + 1; i <= input * 2; i++)
+            factorial2 *= i;
+
+        result = factorial2 / (factorial * factorial);
+
+        Console.WriteLine($"\n\nNo. of routes = {result}");
     }
 }
 #endregion
